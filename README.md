@@ -60,5 +60,5 @@ Framework capabilities and it's implementation details
 - Automated access token renewal
 - Supports Maven command line execution and runtime parameters of environment, test filtering via groups and other necessary params
 - Supports integration with GitHub
-- Supports integration with Jenkins
+- Supports integration with Jenkins, Github Actions (YAML present in the repo)
 
