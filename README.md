@@ -1,4 +1,4 @@
-# RestAssuredTestNGFramework
+# RestAssuredTestNGFramework [![Run Spotify Rest API Tests and Publish Reports](https://github.com/NagarjunaSK-Git/BaseRestAPITestFramework/actions/workflows/restapitests.yml/badge.svg?branch=master)](https://github.com/NagarjunaSK-Git/BaseRestAPITestFramework/actions/workflows/restapitests.yml)
 An API test automation framework using Rest Assured (5.2+), Java (19), TestNG (7.9+), Maven and Allure reports (2.25+)
 for Spotify APIs.
 
