@@ -43,7 +43,7 @@ jobs:
       if: always()
       with:
         gh_pages: gh-pages
-        allure_history: allure-history
+        allure_history: allure-results
         allure_results: SpotifyAPITestReports
         keep_reports: 20
 
