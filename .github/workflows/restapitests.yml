@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
 
     env:
       GROUPS: "smoke"
@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '19'
-        distribution: 'temurin'
+        distribution: 'zulu'
         cache: 'maven'
 
     - name: Run tests with Maven
