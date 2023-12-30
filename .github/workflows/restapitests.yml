@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - fixworkflow
 
 jobs:
   test:
