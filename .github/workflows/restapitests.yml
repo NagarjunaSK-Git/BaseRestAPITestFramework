@@ -1,54 +1,71 @@
 name: Run Spotify Rest API Tests and Publish Reports
+
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      groups:
+        description: 'Test Filter or Group'
+        required: true
+        default: 'smoke'
+      thread_count:
+        description: 'Parallelism Option'
+        required: false
+        default: '10'
+      test_environment:
+        description: 'Test Environment'
+        required: false
+        default: 'qa'
+      refresh_token:
+        description: 'Refresh token parameter (Manually generated)'
+        required: true
+        default: 'AQAKpBvyizsZUA4s0t96F5x8kuUck8psjTK-IqHUdJXsziS6w8MRTzN1d2tZeRLrDyXAO_2zE5TkNxvwmv7GoKSJjES8o0VqaOPsWx_XmWM5quUGdG_LUrmPF3Q7bXZPk1I'
 
 jobs:
   test:
-    runs-on: windows-2019
+    name: Run Spotify Rest API Tests
+    runs-on: ubuntu-latest
 
     env:
-      GROUPS: "smoke"
-      THREAD_COUNT: "10"
-      TEST_ENVIRONMENT: "qa"
-      REFRESH_TOKEN: "AQAKpBvyizsZUA4s0t96F5x8kuUck8psjTK-IqHUdJXsziS6w8MRTzN1d2tZeRLrDyXAO_2zE5TkNxvwmv7GoKSJjES8o0VqaOPsWx_XmWM5quUGdG_LUrmPF3Q7bXZPk1I"
-
+      GROUPS: ${{ github.event.inputs.groups }}
+      THREAD_COUNT: ${{ github.event.inputs.thread_count }}
+      TEST_ENVIRONMENT: ${{ github.event.inputs.test_environment }}
+      REFRESH_TOKEN: ${{ github.event.inputs.refresh_token }}
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup JDK 19
-      uses: actions/setup-java@v3
-      with:
-        java-version: '19'
-        distribution: 'temurin'
-        cache: 'maven'
+      - name: Setup JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'zulu'
+          cache: 'maven'
 
-    - name: Run tests with Maven
-      run: |
-        mvn clean test -Dgroups="${GROUPS}" -DthreadCount="${THREAD_COUNT}" -DTEST_ENVIRONMENT="${TEST_ENVIRONMENT}" -DREFRESH_TOKEN="${REFRESH_TOKEN}"
+      - name: Run tests with Maven
+        run: |
+          mvn clean test -Dgroups="${GROUPS}" -DthreadCount="${THREAD_COUNT}" -DTEST_ENVIRONMENT="${TEST_ENVIRONMENT}" -DREFRESH_TOKEN="${REFRESH_TOKEN}"
 
-    - name: Load test report history
-      uses: actions/checkout@v3
-      if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
-      if: always()
-      with:
-        gh_pages: gh-pages
-        allure_history: allure-history
-        allure_results: target/SpotifyAPITestReports
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+            allure_results: allure-results
+            allure_history: allure-history
+            keep_reports: 20
 
-    - name: Publish test report
-      uses: peaceiris/actions-gh-pages@v3
-      if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-history
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
