@@ -32,7 +32,7 @@ To run local, Kindly update the run configurations in IDE for test execution.
 * Run test for parallel with 5 threads `mvn clean test -Dgroups="regression" -DthreadCount="5" -DTEST_ENVIRONMENT="qa"  -DREFRESH_TOKEN="YOUR_REFRESH_TOKEN"`
 * Run test for different environment `mvn clean test -Dgroups="regression" -DthreadCount="5" -DTEST_ENVIRONMENT="uat"  -DREFRESH_TOKEN="YOUR_REFRESH_TOKEN"`
 
-Technologies/Tools used in building the framework
+Framework Brief Details on tools and libraries utilized
 =================================================
 - Rest Assured for rest api handling with BDD
 - TestNG as test framework 
@@ -45,21 +45,20 @@ Technologies/Tools used in building the framework
 - GitHub for Version control
 - Jenkins (Compatible) for CI CD
 
-Framework implements and capabilities
+Framework capabilities and it's implementation details
 =========================================
-- Scalable and extensible
+- Easily Scalable and extensible
 - Reusable Rest Assured specifications
-- Reusable Rest Assured API requests
+- Reusable Rest Assured API components
 - Separation of API layer from test layer
 - POJOs for Serialization and Deserialization
-- Singleton Design Pattern
+- Singleton Design Pattern for properties loading
 - Lombok for reducing Boilerplate code
 - Builder pattern for Setter methods in POJOs
-- Robust reporting and logging using Allure
-- Support parallel execution
-- Data driven using TestNG Data Provider
+- Robust reporting and logging using Allure Reports
+- Supports parallel execution
 - Automated access token renewal
-- Maven command line execution
-- Integration with Git
-- Integration with Jenkins
+- Supports Maven command line execution and runtime parameters of environment, test filtering via groups and other necessary params
+- Supports integration with GitHub
+- Supports integration with Jenkins
 
