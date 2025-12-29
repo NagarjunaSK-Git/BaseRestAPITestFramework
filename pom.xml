@@ -11,15 +11,15 @@
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.surefire.plugin.version>3.2.3</maven.surefire.plugin.version>
-        <aspectj.version>1.9.21</aspectj.version>
-        <rest-assured.version>5.4.0</rest-assured.version>
-        <testng.version>7.9.0</testng.version>
-        <jackson-databind.version>2.16.1</jackson-databind.version>
-        <jsonassert.version>1.5.1</jsonassert.version>
-        <lombok.version>1.18.30</lombok.version>
-        <allure-testng.version>2.25.0</allure-testng.version>
-        <allure-rest-assured.version>2.25.0</allure-rest-assured.version>
+        <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
+        <aspectj.version>1.9.25.1</aspectj.version>
+        <rest-assured.version>6.0.0</rest-assured.version>
+        <testng.version>7.11.0</testng.version>
+        <jackson-databind.version>2.20.0</jackson-databind.version>
+        <jsonassert.version>1.5.3</jsonassert.version>
+        <lombok.version>1.18.42</lombok.version>
+        <allure-testng.version>2.32.0</allure-testng.version>
+        <allure-rest-assured.version>2.32.0</allure-rest-assured.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <build>
@@ -27,7 +27,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.12.1</version>
+                <version>3.14.1</version>
                 <configuration>
                     <source>19</source>
                     <target>19</target>
